@@ -34,30 +34,42 @@ class Stack{
 template <typename T>
 bool Stack<T>::isEmpty() const{
     //TODO
-    return true;
+    return (current == -1);
 }
 
 template <typename T>
 bool Stack<T>::isFull() const{
     //TODO
-    return true;
+    return (current == size - 1);
 }
 
 template <typename T>
 T Stack<T>::top() const{
     //TODO
-    return NULL;
+    // 비어있을 때 고려해야 하나?
+    return array[current];
 }
 
 template <typename T>
 T Stack<T>::pop(){
     //TODO
-    return NULL;
+    T value = array[current];
+    array[current] = 0;
+    current--;
+    return value;
 }
 
 template <typename T>
 void Stack<T>::push(const T& item){
     //TODO
+    if (isFull())
+    {
+        return;
+    } else {
+        current++;
+        array[current] = item;
+    }
+    
     return;
 }
 
