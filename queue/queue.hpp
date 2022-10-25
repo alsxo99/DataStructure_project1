@@ -65,6 +65,11 @@ void Queue<T>::enqueue(const T& value, int priority){
         size = size * 2;
         array = array2;
     } else {
+        if (rear + 1 == size)
+        {
+            rear -= size;
+        }
+        
         array[rear + 1].value = value;
         array[rear + 1].priority = priority;
         rear++;
@@ -91,11 +96,11 @@ int Queue<T>::top(){
         if(array[copy_front + i].priority > highest_priority)
         {
             highest_priority = array[copy_front + i].priority;
-            index = i;
+            index = copy_front + i;
         }
 
         // 제대로 작동하는지 확인해아함
-        if (array[copy_front + i].priority == 0) break;
+        if (copy_front + i == rear) break;
     }
     
     return index;
@@ -112,8 +117,6 @@ T Queue<T>::dequeue(){
 
     // 빈값 맞는지 확인해야함
     val = array[index].value;
-    array[index].value = 0;
-    array[index].priority = 0;
     
     if (index == front)
     {
@@ -124,12 +127,11 @@ T Queue<T>::dequeue(){
     } else {
         while (index > front)
         {
+            // 수정 필요
             array[index].value = array[index - 1].value;
             array[index].priority = array[index - 1].priority;
             index--;
         }
-        array[front].value = 0;
-        array[front].priority = 0;
         front++;
     }
     
@@ -139,5 +141,5 @@ T Queue<T>::dequeue(){
 template <typename T>
 bool Queue<T>::isFull(){
     //TODO
-    return (rear != -1 && rear + 1 == front || (!empty && (front == 0 && rear == size - 1)));
+    return ((rear != -1 && rear + 1 == front) || (!empty && (front == 0 && rear == size - 1)));
 }
