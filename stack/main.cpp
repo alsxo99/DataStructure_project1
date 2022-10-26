@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <random>
 #include <string>
-#include "util.cpp"
+#include "stack.hpp"
 
 using namespace std;
 

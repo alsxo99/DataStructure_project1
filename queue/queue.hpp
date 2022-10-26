@@ -47,11 +47,13 @@ void Queue<T>::enqueue(const T& value, int priority){
     {
         Item<T> *array2 = new Item<T>[size * 2];
 
+        // copy for loop 은 끝까지 다 돈다.
         for (int i = 0; i < size; i++)
         {
             if (front + i >= size) front -= size;
             array2[i].value = array[front + i].value;
             array2[i].priority = array[front + i].priority;
+
         }
         
         array2[size].value = value;
@@ -67,6 +69,7 @@ void Queue<T>::enqueue(const T& value, int priority){
     } else {
         if (rear + 1 == size)
         {
+            // rear = -1 과 같은 표현.
             rear -= size;
         }
         
@@ -82,7 +85,9 @@ template <typename T>
 int Queue<T>::top(){
     //TODO
     //returning the array index of the highest priority item
-    if (empty) return -1;
+    
+    // 예외처리 안해도 됨.
+    // if (empty) return -1;
 
     int index = 0;
     int highest_priority = 0;
@@ -99,6 +104,7 @@ int Queue<T>::top(){
             index = copy_front + i;
         }
 
+        // rear 에 도달하면 break.
         // 제대로 작동하는지 확인해아함
         if (copy_front + i == rear) break;
     }
@@ -110,12 +116,14 @@ template <typename T>
 T Queue<T>::dequeue(){
     //TODO
     // 1개 있을 때 dequeue 하면 empty 인거 해야함.
-    if (empty) return -1;
+    
+    // exception 처리 안해도됨.
+    // if (empty) return -1;
 
     int index = top();
     int val;
 
-    // 빈값 맞는지 확인해야함
+    // return 할 value
     val = array[index].value;
     
     if (index == front)
@@ -125,15 +133,27 @@ T Queue<T>::dequeue(){
     {
         rear--;
     } else {
-        while (index > front)
+        // index 부터 한칸씩 왼쪽으로 옮기면서 copy
+        while (index != front)
         {
-            // 수정 필요
-            array[index].value = array[index - 1].value;
-            array[index].priority = array[index - 1].priority;
-            index--;
+            // 왼쪽으로 옮기다가 0 index 에 복사를 해야하는 경우
+            if (index == 0)
+            {
+                array[index].value = array[size - 1].value;
+                array[index].priority = array[size - 1].priority;
+                index = size - 1;
+            } else { // 나머지 일반적인 경우들
+                array[index].value = array[index - 1].value;
+                array[index].priority = array[index - 1].priority;
+                index--;
+            }
+            
         }
-        front++;
+        front++;  
     }
+
+    // 1개일때 dequeue 하면 empty = true
+    if (front == rear + 1) empty = true;
     
     return val;
 }
