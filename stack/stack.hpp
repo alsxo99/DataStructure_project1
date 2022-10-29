@@ -47,6 +47,7 @@ template <typename T>
 T Stack<T>::top() const{
     //TODO
     // 비어있을 때 고려해야 하나?
+    // exception 안해도 됨.
     return array[current];
 }
 
@@ -65,6 +66,21 @@ void Stack<T>::push(const T& item){
     if (isFull())
     {
         // x2 array
+        T * array2 = new T[size * 2];
+
+        for (int i = 0; i < size; i++)
+        {
+            array2[i] = array[i];
+        }
+
+        delete[] array;
+
+        array2[size] = item;
+        
+        current = size;
+        size = size * 2;
+        array = array2;
+        
         return;
     } else {
         current++;
@@ -76,3 +92,4 @@ void Stack<T>::push(const T& item){
 
 bool checkParentheses(const string& line, const vector<pair<char,char>>& pairs);
 float calculate(const string& line);
+string infixToPostfix(const string& line);

@@ -18,8 +18,23 @@ int main() {
     cout<<boolalpha;
     cout<<q.isFull()<<endl;
 
-    q.enqueue(1,2);
-    q.enqueue(2,3);
+    q.enqueue(1,1);
+    q.enqueue(2,2);
+    q.enqueue(3,3);
+    q.enqueue(4,4);
+    q.enqueue(5,5);
+    q.enqueue(6,6);
+    q.enqueue(7,7);
+    q.enqueue(8,8);
+    q.enqueue(1,1);
+    q.enqueue(2,2);
+    q.enqueue(3,3);
+    q.enqueue(4,4);
+    q.enqueue(5,5);
+    q.enqueue(6,6);
+    q.enqueue(7,7);
+    q.enqueue(8,8);
+    q.enqueue(9,9);
 
     cout<<q.isFull()<<endl;
     cout<<q.top()<<endl;
