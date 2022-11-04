@@ -34,7 +34,6 @@ int main() {
     q.enqueue(6,6);
     q.enqueue(7,7);
     q.enqueue(8,8);
-    q.enqueue(9,9);
 
     cout<<q.isFull()<<endl;
     cout<<q.top()<<endl;

@@ -66,6 +66,7 @@ void Queue<T>::enqueue(const T& value, int priority){
         rear = size;
         size = size * 2;
         array = array2;
+        
     } else {
         if (rear + 1 == size)
         {

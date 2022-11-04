@@ -55,7 +55,6 @@ template <typename T>
 T Stack<T>::pop(){
     //TODO
     T value = array[current];
-    //array[current] = 0;
     current--;
     return value;
 }
@@ -73,7 +72,8 @@ void Stack<T>::push(const T& item){
             array2[i] = array[i];
         }
 
-        delete[] array;
+        T * old = array;
+        delete[] old;
 
         array2[size] = item;
         
