@@ -34,9 +34,20 @@ int main() {
     q.enqueue(6,6);
     q.enqueue(7,7);
     q.enqueue(8,8);
-    q.enqueue(9,9);
 
     cout<<q.dequeue()<<endl;
+    cout<<q.dequeue()<<endl;
+    cout<<q.dequeue()<<endl;
+    cout<<q.dequeue()<<endl;
+    cout<<q.dequeue()<<endl;
+    cout<<q.dequeue()<<endl;
+    cout<<q.dequeue()<<endl;
+    cout<<q.dequeue()<<endl;
+
+    q.enqueue(5,5);
+    q.enqueue(6,6);
+    q.enqueue(7,7);
+    q.enqueue(8,8);
 
     cout<<q.isFull()<<endl;
     cout<<q.top()<<endl;

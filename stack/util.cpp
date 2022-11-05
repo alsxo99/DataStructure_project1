@@ -9,6 +9,7 @@ using namespace std;
 bool checkParentheses(const string& line, const vector<pair<char,char>>& pairs){
     //TODO
     Stack<char> parentheses;
+    bool isOpen = true;
 
     // 빈 string 도 true로 return.
     if (line.length() == 0)
@@ -21,19 +22,31 @@ bool checkParentheses(const string& line, const vector<pair<char,char>>& pairs){
         // time complexity 괜찮나?
         for (auto p : pairs)
         {   
-            if (c == p.first)
+            if (c == p.first && c != p.second) // 일반적인 여는 괄호
             {   
                 parentheses.push(c);
-            } else if(c == p.second) {
+            } else if(c != p.first && c == p.second) { // 일반적인 닫는 괄호
                 
                 if (parentheses.isEmpty() || parentheses.top() != p.first)
                 {
                     return false;
                 }
                 parentheses.pop();
+            } else if(c == p.first && c == p.second) { // 여는 괄호와 닫는 괄호가 같은 경우
                 
-            } else {
-                // 그냥 지나가
+                if (isOpen) // isOpen 이라는 변수를 이용해서 여는 경우인지, 닫는 경우인지 확인 해준다.
+                {
+                    parentheses.push(c);
+                    isOpen = false;
+                } else {
+                    if (parentheses.isEmpty() || parentheses.top() != c)
+                    {
+                        return false;
+                    }
+                    parentheses.pop();
+                    isOpen = true;
+                }
+                
             }
         }
         

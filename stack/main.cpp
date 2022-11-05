@@ -56,17 +56,20 @@ int main() {
     string b = "({>})";
     string c = "(({[3}))";
     string d = "#3##";
+    string e = "(a)yoa";
 
     cout<<checkParentheses(a, v)<<endl;
     cout<<checkParentheses(b, v)<<endl;
     cout<<checkParentheses(c, v)<<endl;
     cout<<checkParentheses(d, v)<<endl;
+    cout<<checkParentheses(e, v)<<endl;
 
     cout << calculate("(1.25+2.75)/3.2") << endl;
     cout << calculate("((1+3)/2)/2") << endl;
     cout << calculate("1+2") << endl;
     cout << calculate("1+(-1)") << endl;
     cout << calculate("3*(-4)/2") << endl;
-    return 0;
+    cout << calculate("(1+(-1)+1+(-1)*5+(-2)+3*5+1+(-1)+1+(-1)+1+(-1)+1+(-1)+1+(-1))") << endl;
+    cout << calculate("(25.5+23.5)/4") << endl;
 
 }
