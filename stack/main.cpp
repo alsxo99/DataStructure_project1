@@ -43,17 +43,30 @@ int main() {
 
     cout<<s.pop()<<endl;
 
-    pair<char,char> p = make_pair('(',')');
+    pair<char,char> p1 = make_pair('(',')');
+    pair<char,char> p2 = make_pair('{','}');
+    pair<char,char> p3 = make_pair('#','#');
+
     vector<pair<char,char>> v;
-    v.push_back(p);
+    v.push_back(p1);
+    v.push_back(p2);
+    v.push_back(p3);
 
     string a = "(3))";
+    string b = "({>})";
+    string c = "(({[3}))";
+    string d = "#3##";
+
     cout<<checkParentheses(a, v)<<endl;
+    cout<<checkParentheses(b, v)<<endl;
+    cout<<checkParentheses(c, v)<<endl;
+    cout<<checkParentheses(d, v)<<endl;
 
-
-    cout << calculate("(1+2)/3") << endl;
+    cout << calculate("(1.25+2.75)/3.2") << endl;
     cout << calculate("((1+3)/2)/2") << endl;
-
+    cout << calculate("1+2") << endl;
+    cout << calculate("1+(-1)") << endl;
+    cout << calculate("3*(-4)/2") << endl;
     return 0;
 
 }

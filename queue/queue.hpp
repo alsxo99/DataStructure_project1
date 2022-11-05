@@ -59,7 +59,8 @@ void Queue<T>::enqueue(const T& value, int priority){
         array2[size].value = value;
         array2[size].priority = priority;
 
-        delete[] array;
+        Item<T> *old = array;
+        delete[] old;
 
         // copy 문제 발생하려나 ??
         front = 0;
@@ -130,10 +131,7 @@ T Queue<T>::dequeue(){
     if (index == front)
     {
         front++;
-    } else if (index == rear)
-    {
-        rear--;
-    } else {
+    } else { // 맞겠지?
         // index 부터 한칸씩 왼쪽으로 옮기면서 copy
         while (index != front)
         {
